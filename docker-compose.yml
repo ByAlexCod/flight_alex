@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  back:
+    image: pirateseal/alex-back
+    environment:
+      - MONGO_HOST=localhost
+      - MONGO_INITDB_ROOT_USERNAME=
+      - MONGO_INITDB_ROOT_PASSWORD=
+    networks:
+      - swarm-web
+      - alex
+  db:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: 
+      MONGO_INITDB_ROOT_PASSWORD: 
+    networks:
+      - alex
+
+networks: 
+  swarm-web:
+    external: true
+  alex:
+    driver: bridge
+
+networks: 
+  swarm-tc-agents:
+    external: true
