@@ -1,3 +1,4 @@
+require('dotenv').config();
 import express from "express";
 import { json } from "body-parser";
 import { FlightRouter } from "./controllers/FlightRouter";
@@ -23,7 +24,7 @@ app.use(DestinationRouter);
 app.use(TicketRouter);
 app.use(CurrencyRouter);
 
-mongoose.connect("mongodb://localhost/flights",() => {
+mongoose.connect("mongodb://" + process.env.MONGO_HOST + "/flights",() => {
     console.log("Connected to MongoDB");
 });
 
